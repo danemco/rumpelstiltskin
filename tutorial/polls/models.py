@@ -8,7 +8,7 @@ class Poll(models.Model):
     pub_date = models.DateTimeField('date published')
     slug     = models.SlugField()
     active   = models.BooleanField()
-    created  = models.DateTimeField(auto_now_add=True)
+    created  = models.DateTimeField(auto_now_add=True) # 
     def __unicode__(self):
         return self.question
     def was_published_recently(self):
