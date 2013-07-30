@@ -19,4 +19,4 @@ class Post(models.Model):
 class Category(models.Model):
     category_name = models.CharField(max_length=64)
     description   = models.CharField(max_length=256)
-    post          = models.ManyToManyField(Post)
+    post          = models.ManyToManyField(Post, null=True, blank=True)

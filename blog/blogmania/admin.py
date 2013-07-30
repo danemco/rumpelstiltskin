@@ -2,8 +2,11 @@ from django.contrib import admin
 from blogmania.models import Post, Category
 
 class CategoryInline(admin.TabularInline):
-    model = Category
+    model = Category.post.through
     extra = 2
+
+class CategoryAdmin(admin.ModelAdmin):
+    pass
 
 class PostAdmin(admin.ModelAdmin):
     search_fields = ['title']
@@ -13,9 +16,10 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields' : ('author', 'title', 'body', ('pub_date', 'active'),),
-        })
+        }),
     )
 
     inlines = [CategoryInline]
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Category, CategoryAdmin)
