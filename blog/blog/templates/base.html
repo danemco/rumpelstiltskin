@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>{% block title %}{{ settings.BLOG_TITLE }}{% endblock %}</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale: 1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <a class="navbar-brand" href="/">Blog Title</a>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Blog Home</a></li>
+                    <li><a href="/about/">About Me</a></li>
+                    <li><a href="/contact/">Contact Me</a></li>
+                </ul>
+                <button type="button" class="btn btn-default navbar-btn pull-right">Admin</button>
+            </div>
+            
+            <div class="body-content">
+                <div class="row">
+                    <!-- main content area -->
+                    <div class="col-lg-9">
+                        <h2>Blog Post Title</h2>
+                        <div class="well well-small">
+                            By Dan Purcell, Posted July 30, 2013
+                        </div>
+                        <div class="blog-post">
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dui ante, semper venenatis neque ut, ultrices commodo tortor. Nulla egestas et diam sit amet varius. Suspendisse nec condimentum tortor. Integer eleifend elit tortor, et tincidunt lorem dignissim eget. Aliquam vel magna et lorem commodo tincidunt sed nec ligula. In scelerisque id augue dictum auctor. In hac habitasse platea dictumst. Pellentesque arcu nibh, tempus id suscipit nec, condimentum vel metus. Nunc ut tellus sed nunc tempor pulvinar ac ut eros. Praesent dignissim varius nunc id aliquam. Nunc fringilla nunc sed tristique vestibulum. Nulla sit amet cursus elit. Morbi commodo ullamcorper justo, ac posuere augue malesuada in.</p>
+
+                            <p>Duis nunc libero, blandit ac libero ac, varius semper purus. Maecenas eget tincidunt eros, in imperdiet diam. Sed auctor vestibulum leo, ut ullamcorper purus vehicula quis. Aenean convallis lorem lobortis arcu imperdiet posuere. Curabitur gravida eu nisi in congue. Cras molestie luctus purus a vestibulum. Nullam vel libero risus. Vestibulum id ultrices mi.</p>
+
+                            <p>Aliquam erat volutpat. Donec et erat ac neque sodales consequat sit amet eget erat. Ut facilisis sem blandit, rutrum lectus non, tristique nibh. Nulla volutpat condimentum ultricies. Aliquam molestie consectetur dui eu commodo. Curabitur scelerisque urna a ipsum rutrum euismod. Etiam ut venenatis nulla. Vivamus dolor justo, luctus sed justo vel, vulputate porta elit. Maecenas euismod congue sem vitae pellentesque. Fusce fermentum interdum ultrices. Integer facilisis, eros a facilisis tristique, est leo consectetur nisl, ut commodo nisl ipsum et nisi. Vestibulum non elit ut ante feugiat volutpat id eget enim. Sed vestibulum sapien lorem, faucibus fringilla mauris dapibus ac. Curabitur adipiscing purus eu metus semper, vitae consequat nisi semper. Sed sem libero, lacinia non orci in, mattis euismod odio. </p>
+                        </div> <!-- blog post -->
+                    </div>
+                    <!-- sidebar -->
+                    <div class="col-lg-3">
+                        <h3>Recent Articles</h3>
+                        <ul>
+                            <li><a href="#">Article 3</a></li>
+                            <li><a href="#">Article 2</a></li>
+                            <li><a href="#">Article 1</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div><!-- body-content -->
+            <hr>
+            <footer>
+                Copyright &copy;2013 Dan Purcell. All rights reserved.
+            </footer>
+        </div><!-- container -->
+    </body>
+<html>
