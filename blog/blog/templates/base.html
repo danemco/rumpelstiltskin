@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,21 +25,12 @@
             </div>
             
             <div class="body-content">
+            {% block content %}
                 <div class="row">
                     <!-- main content area -->
                     <div class="col-lg-9">
-                        <h2>Blog Post Title</h2>
-                        <div class="well well-small">
-                            By Dan Purcell, Posted July 30, 2013
-                        </div>
-                        <div class="blog-post">
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dui ante, semper venenatis neque ut, ultrices commodo tortor. Nulla egestas et diam sit amet varius. Suspendisse nec condimentum tortor. Integer eleifend elit tortor, et tincidunt lorem dignissim eget. Aliquam vel magna et lorem commodo tincidunt sed nec ligula. In scelerisque id augue dictum auctor. In hac habitasse platea dictumst. Pellentesque arcu nibh, tempus id suscipit nec, condimentum vel metus. Nunc ut tellus sed nunc tempor pulvinar ac ut eros. Praesent dignissim varius nunc id aliquam. Nunc fringilla nunc sed tristique vestibulum. Nulla sit amet cursus elit. Morbi commodo ullamcorper justo, ac posuere augue malesuada in.</p>
-
-                            <p>Duis nunc libero, blandit ac libero ac, varius semper purus. Maecenas eget tincidunt eros, in imperdiet diam. Sed auctor vestibulum leo, ut ullamcorper purus vehicula quis. Aenean convallis lorem lobortis arcu imperdiet posuere. Curabitur gravida eu nisi in congue. Cras molestie luctus purus a vestibulum. Nullam vel libero risus. Vestibulum id ultrices mi.</p>
-
-                            <p>Aliquam erat volutpat. Donec et erat ac neque sodales consequat sit amet eget erat. Ut facilisis sem blandit, rutrum lectus non, tristique nibh. Nulla volutpat condimentum ultricies. Aliquam molestie consectetur dui eu commodo. Curabitur scelerisque urna a ipsum rutrum euismod. Etiam ut venenatis nulla. Vivamus dolor justo, luctus sed justo vel, vulputate porta elit. Maecenas euismod congue sem vitae pellentesque. Fusce fermentum interdum ultrices. Integer facilisis, eros a facilisis tristique, est leo consectetur nisl, ut commodo nisl ipsum et nisi. Vestibulum non elit ut ante feugiat volutpat id eget enim. Sed vestibulum sapien lorem, faucibus fringilla mauris dapibus ac. Curabitur adipiscing purus eu metus semper, vitae consequat nisi semper. Sed sem libero, lacinia non orci in, mattis euismod odio. </p>
-                        </div> <!-- blog post -->
+                    {% block content %}
+                    {% endblock %}
                     </div>
                     <!-- sidebar -->
                     <div class="col-lg-3">
