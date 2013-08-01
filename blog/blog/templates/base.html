@@ -1,8 +1,9 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html>
     <head>
 
-        <title>{% block title %}{{ settings.BLOG_TITLE }}{% endblock %}</title>
+        <title>{% block title %}Dan's Super Awesome Blog}{% endblock %}</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
 
@@ -15,7 +16,7 @@
     <body>
         <div class="container">
             <div class="navbar navbar-inverse">
-                <a class="navbar-brand" href="/">Blog Title</a>
+                <a class="navbar-brand" href="/">Dan's Super Awesome Blog</a>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Blog Home</a></li>
                     <li><a href="/about/">About Me</a></li>
@@ -25,7 +26,6 @@
             </div>
             
             <div class="body-content">
-            {% block content %}
                 <div class="row">
                     <!-- main content area -->
                     <div class="col-lg-9">
@@ -35,12 +35,7 @@
                     <!-- sidebar -->
                     <div class="col-lg-3">
                         <h3>Recent Articles</h3>
-                        <ul>
-                            <li><a href="#">Article 3</a></li>
-                            <li><a href="#">Article 2</a></li>
-                            <li><a href="#">Article 1</a></li>
-                        </ul>
-
+                        {% recent_blog_posts 5 %}
                     </div>
                 </div>
 

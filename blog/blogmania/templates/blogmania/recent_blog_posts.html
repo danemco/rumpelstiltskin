@@ -1,0 +1,9 @@
+{% if blog_list %}
+<ul>
+    {% for post in blog_list %}
+        <li><a href="{% url 'blogmania:detail' post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Sorry, no recent blog posts here.</p>
+{% endif %}

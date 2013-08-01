@@ -1,9 +1,9 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block content %}
 {% if blog_posts %}
     {% for post in blog_posts %}
-                        <h2{{ post.title }}</h2>
+                        <h2>{{ post.title }}</h2>
                         <div class="well well-small">
                             By {{ post.author.get_full_name }}, Posted {{ post.pub_date|date:"D d M Y" }}
                         </div>

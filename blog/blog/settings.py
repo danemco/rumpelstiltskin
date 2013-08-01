@@ -1,6 +1,8 @@
 # Django settings for blog project.
 import os
 
+DIRNAME = os.path.dirname(__file__)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -158,3 +160,5 @@ LOGGING = {
         },
     }
 }
+
+BLOG_TITLE = 'Dan\'s Super Awesome Blog'
