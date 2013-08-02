@@ -1,6 +1,13 @@
 from django.contrib import admin
 from polls.models import Poll, Choice
 
+class ChoiceAdmin(admin.ModelAdmin):
+    pass
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    extra = 3
+
 class PollAdmin(admin.ModelAdmin):
     search_fields = ['question']
     date_hierarchy = 'pub_date'
@@ -17,8 +24,7 @@ class PollAdmin(admin.ModelAdmin):
          }),
     )
 
-class ChoiceAdmin(admin.ModelAdmin):
-    pass
+    inlines = [ChoiceInline]
 
 admin.site.register(Poll, PollAdmin)
 admin.site.register(Choice, ChoiceAdmin)
