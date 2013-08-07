@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    <h1>@{{ profile.user.username }} on Twitterclone</h1>
+    <img src="/media/{{ profile.picture }}" width="128" height="128" class="img-circle pull-left" />
+    <p style="float: left">{{ profile.bio }}</p>
+</div>
+<div style="clear: both"></div>
+<hr>
+{% for post in latest_posts %}
+    <div>
+    <a href="{% url 'microblog:detail' post.profile.user.username %}"><img src="/media/{{ post.profile.picture }}" width="64" height="64" class="img-circle" /></a>
+    <blockquote class="pull-right">
+    <p>{{ post.message|safe }}</p>
+    <small>posted by @{{ post.profile}} on {{ post.pub_date|date:"D d M Y" }}</small>
+    </blockquote>
+    </div>
+    <div style="clear: both"></div>
+{% endfor %}
+{% endblock %}
