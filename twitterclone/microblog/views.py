@@ -2,7 +2,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from microblog.forms import EditProfileForm, NewPostForm
 from microblog.models import Profile, Post
@@ -13,8 +15,16 @@ def index(request):
     return render(request, 'microblog/index.html', context)
 
 def detail(request, username):
+    try:
+        profile      = Profile.objects.get(user__username=username)
+    except ObjectDoesNotExist:
+        u = User.objects.get(username=username)
+        # user exists but no profile
+        if u:
+            profile = Profile(user=u)
+            profile.save()
+
     latest_posts = Post.objects.filter(profile__user__username=username).order_by('-pub_date')[:15]
-    profile      = Profile.objects.get(user__username=username)
     context = {
        'latest_posts' : latest_posts,
        'profile'      : profile,
