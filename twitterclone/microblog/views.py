@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
-from microblog.forms import EditProfileForm
+from microblog.forms import EditProfileForm, NewPostForm
 from microblog.models import Profile, Post
 
 def index(request):
@@ -23,6 +23,8 @@ def detail(request, username):
 
 @login_required
 def edit_profile(request, username):
+    if request.user.username != username:
+        return render(request, 'microblog/not_your_microblog.html')
     profile = Profile.objects.get(user__username=username)
     if request.method == 'POST':
         form = EditProfileForm(request.POST, request.FILES)
@@ -34,7 +36,6 @@ def edit_profile(request, username):
                 profile.picture = cd['picture']
             profile.save()
             return HttpResponseRedirect(reverse('microblog:detail', args=(username,)))
-        pass
     else:
         form = EditProfileForm(
             initial = {
@@ -46,3 +47,29 @@ def edit_profile(request, username):
         'form' : form, 
         'profile' : profile,
     })
+
+
+@login_required
+def add_post(request, username):
+    if request.user.username != username:
+        return render(request, 'microblog/not_your_microblog.html')
+
+
+    if request.method == 'POST':
+        form = NewPostForm(request.POST)
+        if form.is_valid():
+            # get the user's profile object
+            profile = Profile.objects.get(user__username=username)
+
+            # get the form data, create new Post object
+            cd = form.cleaned_data
+            p = Post(message=cd.get('message'), profile=profile)
+            p.save()
+
+            # take them back to the detail page
+            return HttpResponseRedirect(reverse('microblog:detail', args=(username,)))
+    else:
+        form = NewPostForm()
+        return render(request, 'microblog/add_post.html', {
+            'form' : form
+        })

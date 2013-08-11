@@ -11,7 +11,15 @@
     <p style="float: left">{{ profile.bio }}</p>
 </div>
 <div style="clear: both"></div>
+{% ifequal profile.user.username user.username %}
+<div class="pull-right">
+<a href="{% url 'microblog:add_post' profile.user.username %}" class="btn btn-default">Add New Post</a>
+</div>
+<div style="clear: both"></div>
+{% endifequal %}
 <hr>
+
+
 {% for post in latest_posts %}
     <div>
     <a href="{% url 'microblog:detail' post.profile.user.username %}"><img src="/media/{{ post.profile.picture }}" width="64" height="64" class="img-circle" /></a>
