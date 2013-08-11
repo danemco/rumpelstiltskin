@@ -6,7 +6,11 @@
 
 {% for post in latest_posts %}
     <div>
-    <a href="{% url 'microblog:detail' post.profile.user.username %}"><img src="/media/{{ post.profile.picture }}" width="64" height="64" class="img-circle" /></a>
+    <a href="{% url 'microblog:detail' post.profile.user.username %}">
+    {% if post.profile.picture %}
+    <img src="/media/{{ post.profile.picture }}" width="64" height="64" class="img-circle" />
+    {% endif %}
+    </a>
     <blockquote class="pull-right">
     <p>{{ post.message|safe }}</p>
         <small>posted by @{{ post.profile}} on {{ post.pub_date|date:"D d M Y" }}</small>

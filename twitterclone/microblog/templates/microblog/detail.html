@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+
+{% block title %}@{{ profile.user.username }} on Twitterclone{% endblock %}
+
 {% block content %}
 <div class="jumbotron">
     <h1>@{{ profile.user.username }} on Twitterclone</h1>
+    {% if profile.picture  %}
     <img src="/media/{{ profile.picture }}" width="128" height="128" class="img-circle pull-left" />
+    {% endif %}
     <p style="float: left">{{ profile.bio }}</p>
 </div>
 <div style="clear: both"></div>
