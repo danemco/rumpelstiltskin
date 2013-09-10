@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}@{{ profile.user.username }} on Twitterclone{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>@{{ profile.user.username }} on Twitterclone</h1>
+    {% if profile.picture  %}
+    <img src="/media/{{ profile.picture }}" width="128" height="128" class="img-circle pull-left" />
+    {% endif %}
+    <p style="float: left">{{ profile.bio }}</p>
+</div>
+<div style="clear: both"></div>
+{% ifequal profile.user.username user.username %}
+<div class="pull-right">
+<a href="{% url 'microblog:add_post' profile.user.username %}" class="btn btn-default">Add New Post</a>
+</div>
+<div style="clear: both"></div>
+{% endifequal %}
+<hr>
+
+
+{% for post in latest_posts %}
+    <div>
+    <a href="{% url 'microblog:detail' post.profile.user.username %}"><img src="/media/{{ post.profile.picture }}" width="64" height="64" class="img-circle" /></a>
+    <blockquote class="pull-right">
+    <p>{{ post.message|safe }}</p>
+    <small>posted by @{{ post.profile}} on {{ post.pub_date|date:"D d M Y" }}</small>
+    </blockquote>
+    </div>
+    <div style="clear: both"></div>
+{% endfor %}
+{% endblock %}
