@@ -25,9 +25,11 @@ def detail(request, username):
             profile.save()
 
     latest_posts = Post.objects.filter(profile__user__username=username).order_by('-pub_date')[:15]
+    form = NewPostForm()
     context = {
-       'latest_posts' : latest_posts,
-       'profile'      : profile,
+       'latest_posts': latest_posts,
+       'profile': profile,
+       'form': form,
     }
     return render(request, 'microblog/detail.html', context)
 

@@ -12,6 +12,13 @@
 </div>
 <div style="clear: both"></div>
 {% ifequal profile.user.username user.username %}
+<div class="panel">
+<form action="{% url 'microblog:add_post' profile.user.username %}" method="POST" id="post-new-message">
+{% csrf_token %}
+{{ form }}
+<button class="btn">Submit</button>
+</form>
+</div>
 <div class="pull-right">
 <a href="{% url 'microblog:add_post' profile.user.username %}" class="btn btn-default">Add New Post</a>
 </div>
@@ -30,4 +37,29 @@
     </div>
     <div style="clear: both"></div>
 {% endfor %}
+{% endblock %}
+
+{% block extrascripts %}
+<script>
+    $(function () {
+        $('#post-new-message').submit(
+            function (evt) {
+                evt.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'), 
+                    data: $(this).serialize(),
+                    type: 'post',
+                    success: function (data) {
+                        window.location = '.';
+                    },
+                    error: function () {
+                        alert('Error. sweet.');
+                    },
+                    //dataType: 'json';
+                })
+
+                return false;
+            });
+      });
+</script>
 {% endblock %}
