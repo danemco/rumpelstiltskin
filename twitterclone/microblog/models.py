@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(User)
     bio  = models.TextField('About me')
     # Where I left off
     picture = models.ImageField('Profile Image', upload_to='pictures/%Y/%m/%d', blank="True")
