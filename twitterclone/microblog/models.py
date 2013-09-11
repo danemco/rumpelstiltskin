@@ -4,17 +4,20 @@ from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(Users)
     bio  = models.TextField('About me')
-    picture = models.ImageField('Profile picture', upload_to='photos/%Y/%m/%d')
+    # Where I left off
+    picture = models.ImageField('Profile Image', upload_to='pictures/%Y/%m/%d', blank="True")
+    following = models.ManyToMany('self')
 
     def __unicode__(self):
         return self.user.username
 
 class Post(models.Model):
-    profile  = models.ForeignKey(Profile)
-    pub_date = models.DateTimeField('Published date', auto_now=True)
+    profile = models.ForeignKey(Profile)
     message  = models.CharField(max_length=140)
+    pub_date = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.message
+
