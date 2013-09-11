@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Quantity for {{ item }}{% endblock %}
+
+{% block content %}
+<h1>Edit quantity for {{ item }}</h1>
+<p>Current quantity: <span class="badge">{{ item.quantity }}</span></p>
+<p>New quantity:</p>
+<form action="." method="POST" id="edit-qty-form">
+{% csrf_token %}
+{{ form }}
+<button class="button">Submit</button>
+</form>
+{% endblock %}

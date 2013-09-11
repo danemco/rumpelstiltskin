@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-# from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
 from inventory.models import Category, Item
@@ -39,12 +39,11 @@ def item_update(request, item_id):
             # save the updated object
             item.save()
 
-            # take them back to the detail page for that item
-            return HttpResponseRedirect(reverse('inventory:detail', args=(item.id,)))
+            # take them back to the category detail page for the first category that item belongs in
+            return HttpResponseRedirect(reverse('inventory:detail', args=(item.category.all()[0].id,)))
     else:
-        form = NewPostForm()
-        return render(request, 'microblog/add_post.html', {
-            'form' : form
+        form = EditItemQty()
+        return render(request, 'inventory/edit_item_qty.html', {
+            'form' : form,
+            'item' : item,
         })
-
-    pass

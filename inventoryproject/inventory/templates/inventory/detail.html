@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>Items in {{ category }}</h1>
+<p>(back to <a href="{% url 'inventory:index' %}">category list</a>)
 {% if items %}
 <table class="table">
 <tr>
