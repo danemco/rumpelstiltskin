@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Items for {{ category }}{% endblock %}
+
+{% block content %}
+<h1>Items in {{ category }}</h1>
+{% if items %}
+<table class="table">
+<tr>
+    <th>Item Name</td>
+    <th>Quantity</td>
+    <th></td>
+{% for item in items %}
+<tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td><a href="{% url 'inventory:adjust_qty' item.id %}">edit</a></td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %}
+<p>No items found. Want to add some?</p>
+
+{% endif %}
+{% endblock %}

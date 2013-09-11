@@ -3,7 +3,7 @@ from inventory.models import Item, Category
 
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    list_display = ('name', 'parent',)
+    list_display = ('name',)
 
 class ItemAdmin(admin.ModelAdmin):
     search_fields = ['name']

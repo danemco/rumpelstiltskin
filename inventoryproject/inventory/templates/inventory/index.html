@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventory Management{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+<h1>Inventory Manager</h1>
+<p>Use this handy app to manage your inventory.</p>
+</div>
+{% if categories %}
+<h3>Please select a category:</h3>
+<ul>
+{% for category in categories %}
+<li><a href="{% url 'inventory:detail' category.id %}">{{ category.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% else %}
+<p>No categories found. Want to add some?</p>
+
+{% endif %}
+{% endblock %}
