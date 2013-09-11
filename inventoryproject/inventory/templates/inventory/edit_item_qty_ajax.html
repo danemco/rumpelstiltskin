@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Quantity for {{ item }} with ajax{% endblock %}
+
+{% block extrascripts %}
+<script>
+    $(function () {
+        $('#edit-qty-form').submit(
+            function (evt) {
+                evt.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'), 
+                    data: $(this).serialize(),
+                    type: 'post',
+                    success: function (data) {
+                        window.location = '.';
+                    },
+                    error: function () {
+                        alert('Error. sweet.');
+                    },
+                    //dataType: 'json';
+                })
+
+                return false;
+            });
+      });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Edit quantity for {{ item }}</h1>
+<p>Current quantity: <span class="badge">{{ item.quantity }}</span></p>
+<p>New quantity:</p>
+<form action="." method="POST" id="edit-qty-form">
+{% csrf_token %}
+{{ form }}
+<button class="button">Submit</button>
+</form>
+{% endblock %}
