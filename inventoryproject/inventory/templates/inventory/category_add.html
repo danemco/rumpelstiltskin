@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Add A New Category{% endblock %}
+
+{% block extrascripts %}
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript" src="{% url "tinymce-js" "NAME" %}"></script>
+{% endblock %}
+
+{% block content %}
+{% if messages %}<p style="color: red">{{ messages }}</p>{% endif %}
+<h1>Add A New Category</h1>
+<form method="POST" action="." id="new-category-form">
+<table class="table">
+{% csrf_token %}
+{{ form }}
+</table>
+<button class="btn btn-danger">Add Category</button>
+</form>
+{% endblock %}
