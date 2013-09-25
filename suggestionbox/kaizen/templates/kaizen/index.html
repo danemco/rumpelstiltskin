@@ -18,14 +18,14 @@
     <th>Date</th>
     <th>Submitted By</th>
 </tr>
-{% foreach idea in ideas %}
+{% for idea in ideas %}
 <tr>
     <td>{{ idea.category }}</td>
     <td><a href="{% url 'kaizen:detail' idea.id %}">{{ idea.title }}</a></td>
     <td>{{ idea.pub_date }}</td>
     <td>{{ idea.user.get_full_name }}</td>
 </tr>
-{% endforeach %}
+{% endfor %}
 </table>
 
 {% else %}

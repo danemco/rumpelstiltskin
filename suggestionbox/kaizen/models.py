@@ -33,6 +33,8 @@ class Idea(models.Model):
 class Comment(models.Model):
     comment = models.TextField()
     idea = models.ForeignKey(Idea)
+    user = models.ForeignKey(User)
+    pub_date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.comment

@@ -12,7 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class IdeaAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
     search_fields = ['title', 'body']
-    list_display = ('idea', 'category', 'status', 'pub_date',)
+    list_display = ('title', 'category', 'status', 'pub_date',)
     list_filter = ['pub_date', 'status', 'category']
 
     inlines = [CommentInlineAdmin]
