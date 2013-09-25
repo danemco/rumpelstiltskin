@@ -7,19 +7,34 @@ class Status(models.Model):
     def __unicode__(self):
         return self.status
 
-class Idea(models.Model):
-    user = models.ForienKey(User)
-    title = models.CharField(max_length=100)
-    body = models.TextField('suggestion')
-    status = models.ForeignKey(Status)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name_plural = 'statuses'
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return title
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
+class Idea(models.Model):
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=100)
+    body = models.TextField('suggestion')
+    status = models.ForeignKey(Status, null=True, blank=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.title
 
 class Comment(models.Model):
     comment = models.TextField()
     idea = models.ForeignKey(Idea)
 
     def __unicode__(self):
-        return comment
+        return self.comment
+
+

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Show All Kaizen Submissions{% endblock %}
+
+{% block extrascripts %}{% endblock %}
+
+{% block content %}
+
+<!-- submit an idea here -->
+
+{% if ideas %}
+<h1>List of submitted ideas</h1>
+
+<table class="table">
+<tr>
+    <th>Category</th>
+    <th>Idea</th>
+    <th>Date</th>
+    <th>Submitted By</th>
+</tr>
+{% foreach idea in ideas %}
+<tr>
+    <td>{{ idea.category }}</td>
+    <td><a href="{% url 'kaizen:detail' idea.id %}">{{ idea.title }}</a></td>
+    <td>{{ idea.pub_date }}</td>
+    <td>{{ idea.user.get_full_name }}</td>
+</tr>
+{% endforeach %}
+</table>
+
+{% else %}
+<h1>No Ideas Yet</h1>
+<p>Be the first to <a href="{% url 'kaizen:new-idea' %}">submit an idea</a> to Kaizen!</p>
+{% endif %}
+
+{% endblock %}
