@@ -2,9 +2,53 @@
 
 {% block title %}Edit Quantity for {{ item }}{% endblock %}
 
+{% block extrascripts %}
+{% comment %}
+
+<script>
+
+function updateQty () {
+   $.ajax({
+        url: '{% url 'inventory:get_qty' item.id %}', //
+        type: 'get',
+        success: function (data) {
+                $('#current-qty').html(data);
+            },
+   });
+}
+
+$(function () {
+
+    updateQty();
+    
+    $('#edit-qty-form').submit(
+        function (evt) {
+            evt.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'post',
+                data: $(this).serialize(),
+                success: function (data) {
+                        updateQty();
+                    },
+                error: function (data) {
+                        alert('It didn\'t work.');
+                    },
+            });
+
+            return false;
+        });
+});
+</script>
+
+{% endcomment %}
+
+{% endblock %}
+
 {% block content %}
 <h1>Edit quantity for {{ item }}</h1>
-<p>Current quantity: <span class="badge">{{ item.quantity }}</span></p>
+<p>Current quantity: <span class="badge" id="current-qty">{{ item.quantity }}</span></p>
 <p>New quantity:</p>
 <form action="." method="POST" id="edit-qty-form">
 {% csrf_token %}

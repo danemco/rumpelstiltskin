@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
 from inventory.models import Category, Item
-from inventory.forms import EditItemQty
+from inventory.forms import EditItemQty, CategoryForm
 
 def index(request):
     categories = Category.objects.all()
@@ -47,3 +47,31 @@ def item_update(request, item_id):
             'form' : form,
             'item' : item,
         })
+
+def category_add(request):
+
+    messages = ""
+    
+    if request.method == 'POST':
+        category_form = CategoryForm(request.POST)
+        if category_form.is_valid():
+            cd = category_form.cleaned_data
+            new_category, created = Category.objects.get_or_create(name = cd.get('name'), 
+                                        defaults = {'description': cd.get('description'),})
+            if not created:
+                messages = "That category already exists."
+            else:
+                messages = "Category created successfully!"
+                new_category.save()
+    else:
+        category_form = CategoryForm()
+    context = {
+        'form': category_form,
+        'messages': messages,
+    }
+    return render(request, 'inventory/category_add.html', context)
+
+def item_qty_get(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    return HttpResponse(item.quantity)
+
