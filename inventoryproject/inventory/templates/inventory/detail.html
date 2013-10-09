@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}Items for {{ category }}{% endblock %}
 
 {% block content %}
-<h1>Items in {{ category }}</h1>
+<h1><img src="{{ MEDIA_URL }}{{ category.image }}" width="100" />Items in {{ category }}</h1>
 <p>(back to <a href="{% url 'inventory:index' %}">category list</a>)
 {% if items %}
 <table class="table">

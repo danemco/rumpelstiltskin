@@ -4,6 +4,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField('Category Name', max_length=100)
     description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/')
 
     def __unicode__(self):
         return self.name

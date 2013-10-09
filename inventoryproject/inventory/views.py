@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from inventory.models import Category, Item
 from inventory.forms import EditItemQty, CategoryForm
 
+
 def index(request):
     categories = Category.objects.all()
 
@@ -53,16 +54,10 @@ def category_add(request):
     messages = ""
     
     if request.method == 'POST':
-        category_form = CategoryForm(request.POST)
+        category_form = CategoryForm(request.POST, request.FILES)
         if category_form.is_valid():
-            cd = category_form.cleaned_data
-            new_category, created = Category.objects.get_or_create(name = cd.get('name'), 
-                                        defaults = {'description': cd.get('description'),})
-            if not created:
-                messages = "That category already exists."
-            else:
-                messages = "Category created successfully!"
-                new_category.save()
+            category_form.save()
+            return HttpResponseRedirect('/inventory/')
     else:
         category_form = CategoryForm()
     context = {

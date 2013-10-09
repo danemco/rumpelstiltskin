@@ -12,18 +12,23 @@
 </div>
 <div style="clear: both"></div>
 {% ifequal profile.user.username user.username %}
-<div class="panel">
-<form action="{% url 'microblog:add_post' profile.user.username %}" method="POST" id="post-new-message">
-{% csrf_token %}
-{{ form }}
-<button class="btn">Submit</button>
-</form>
-</div>
 <div class="pull-right">
 <a href="{% url 'microblog:add_post' profile.user.username %}" class="btn btn-default">Add New Post</a>
 </div>
 <div style="clear: both"></div>
 {% endifequal %}
+
+{% ifnotequal user.username profile.user.username %}
+
+   {% if following %}
+      <p>You're already following this person</p>
+   {% else %}
+      <p>Nope, you're not following this person. Want to?</p>
+   {% endif %}
+
+{% endifnotequal %}
+
+
 <hr>
 
 

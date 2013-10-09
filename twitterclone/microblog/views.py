@@ -15,6 +15,7 @@ def index(request):
     return render(request, 'microblog/index.html', context)
 
 def detail(request, username):
+    following = False
     try:
         profile      = Profile.objects.get(user__username=username)
     except ObjectDoesNotExist:
@@ -24,12 +25,19 @@ def detail(request, username):
             profile = Profile(user=u)
             profile.save()
 
-    latest_posts = Post.objects.filter(profile__user__username=username).order_by('-pub_date')[:15]
-    form = NewPostForm()
+    if request.user.username == username:
+        latest_posts = Post.objects.filter(profile__in=profile.following.all()).order_by('-pub_date')[:15]
+    else:
+        latest_posts = Post.objects.filter(profile__user__username=username).order_by('-pub_date')[:15]
+    for user_profile in request.user.profile_set.all():
+        if user_profile in profile.following.all():
+            following = True
+            break
+
     context = {
        'latest_posts': latest_posts,
        'profile': profile,
-       'form': form,
+       'following': following,
     }
     return render(request, 'microblog/detail.html', context)
 

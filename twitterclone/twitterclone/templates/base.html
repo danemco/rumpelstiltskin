@@ -23,11 +23,11 @@
                 </ul>
                 {% if user.is_authenticated %} <!-- I need help here. How to tell if the user is logged in? -->
                     <a href="{% url 'microblog:edit_profile' user.username %}" class="btn btn-default navbar-btn pull-right">Edit Profile</a></button> | 
-                    <a href="{% url 'auth_logout' %}" class="btn btn-default navbar-btn pull-right">Log Out</a></button>
+                    <a href="#" class="btn btn-default navbar-btn pull-right">Log Out</a></button>
                     <a href="{% url 'microblog:detail' user.username %}" class="btn btn-default navbar-btn pull-right">@{{ user.username }}</a></button>
                 {% else %}
-                    <a href="{% url 'registration_register' %}" class="btn btn-default navbar-btn pull-right">Sign Up</a></button> | 
-                    <a href="{% url 'auth_login' %}" class="btn btn-default navbar-btn pull-right">Log In</a></button>
+                    <a href="#" class="btn btn-default navbar-btn pull-right">Sign Up</a></button> | 
+                    <a href="#" class="btn btn-default navbar-btn pull-right">Log In</a></button>
                 {% endif %}
             </div>
             

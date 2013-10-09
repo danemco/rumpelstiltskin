@@ -7,6 +7,6 @@ class NewIdeaForm(forms.ModelForm):
 
     class Meta:
         model = Idea
-        fields = ('category', 'title', 'body',)
+        # fields = ('category', 'title', 'body',)
 
         

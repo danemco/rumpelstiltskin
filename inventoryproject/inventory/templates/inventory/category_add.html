@@ -4,14 +4,15 @@
 {% block title %}Add A New Category{% endblock %}
 
 {% block extrascripts %}
-<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-<script type="text/javascript" src="{% url "tinymce-js" "NAME" %}"></script>
 {% endblock %}
 
 {% block content %}
 {% if messages %}<p style="color: red">{{ messages }}</p>{% endif %}
+{% if form.errors %}
+{{ form.errors }}
+{% endif %}
 <h1>Add A New Category</h1>
-<form method="POST" action="." id="new-category-form">
+<form method="POST" action="." id="new-category-form" enctype="multipart/form-data">
 <table class="table">
 {% csrf_token %}
 {{ form }}
