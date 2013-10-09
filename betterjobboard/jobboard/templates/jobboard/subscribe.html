@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Subscribe to alerts{% endblock %}
+
+{% block content %}
+
+<h1>Subscribe to new job post alerts</h1>
+
+<p>Get an email when a new job post has been posted to this site. You can always opt out by visiting our <a href="{% url 'jobboard:unsubscribe' %}"> unsubscribe page.</a></p>
+
+<form method='POST' action='.'>
+{% csrf_token %}
+<table class="table">
+{{ form }}
+</table>
+<button class="btn">Subscribe me</button>
+</form>
+
+{% endblock %}

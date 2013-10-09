@@ -18,8 +18,8 @@
                 <a class="navbar-brand" href="/">Better Job Board</a>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/about/">About Me</a></li>
-                    <li><a href="/contact/">Contact Me</a></li>
+                    <li><a href="{% url 'jobboard:subscribe' %}">Subscribe</a></li>
+                    <li><a href="{% url 'jobboard:unsubscribe' %}">Unsubscribe</a></li>
                 </ul>
                 {% if user.is_authenticated %} <!-- I need help here. How to tell if the user is logged in? -->
                     <a href="{% url 'jobboard:profile-job-list' %}" class="btn btn-default navbar-btn pull-right">My Jobs</a></button> | 

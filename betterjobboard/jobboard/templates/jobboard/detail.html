@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+(<a href="{% url 'jobboard:edit-post' post.id %}">Edit this post</a>)
+<h1>{{ post.title }}</h1>
+
+{% ifequal post.profile.user.username user.username %}
+{% endifequal %}
+
+<div id="post-description">
+{{ post.description|safe }}
+</div>
+
+<h3>More Details about the job</h3>
+<table class="table">
+<tr>
+    <td>Wage:</td>
+    <td>{{ post.wage }}</td>
+</tr>
+<tr>
+    <td>Job Type:</td>
+    <td>{{ post.job_type }}</td>
+</tr>
+<tr>
+    <td>Publish Date:</td>
+    <td>{{ post.pub_date }}</td>
+</tr>
+<tr>
+    <td>This job expires on:</td>
+    <td>{{ post.expiration }}</td>
+</tr>
+</table>
+
+<h3>About {{ post.profile.company_name }}</h3>
+<table class="table">
+<tr>
+    <td>Website:</td>
+    <td><a href="{{ post.profile.company_website }}">{{ post.profile.company_website }}</a></td>
+</tr>
+<tr>
+    <td>Contact email:</td>
+    <td>{{ post.profile.email }}</td>
+</tr>
+<tr>
+    <td>Person to contact:</td>
+    <td>{{ post.profile.contact }}</td>
+</tr>
+</table>
+
+{% endblock %}

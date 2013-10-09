@@ -15,17 +15,18 @@
     <th>Publish Date</th>
     <th>Expiration Date</th>
     <th>Active?</th>
+    <th></th>
 </tr>
 
     {% for post in posts %}
     <tr>
         <td><a href="{% url 'jobboard:detail' post.id %}">{{ post.title }}</a></td>
-        <td>{{ post.profile.company_name }}</td>
         <td>{{ post.wage }}</td>
         <td>{{ post.job_type }}</td>
         <td>{{ post.pub_date }}</td>
         <td>{{ post.expiration }}</td>
         <td>{{ post.active }}</td>
+        <td><a href="{% url 'jobboard:edit-post' post.id %}">edit</a> | <a href="{% url 'jobboard:detail' post.id %}" target="_blank">view</a></td>
     </tr>
     {% endfor %}
     </table>

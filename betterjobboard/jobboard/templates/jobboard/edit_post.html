@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit job post {{ post }}{% endblock %}
+
+{% block content %}
+
+<h1>Edit Job Post {{ post }}</h1>
+
+<form method='POST' action='.'>
+{% csrf_token %}
+<table class="table">
+{{ form }}
+</table>
+<button class="btn">Save Changes</button>
+</form>
+
+{% endblock %}

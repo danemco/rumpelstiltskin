@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from jobboard.models import Profile, Post, Subscriber
 
@@ -14,3 +15,6 @@ class ProfileForm(ModelForm):
 class SubscriberForm(ModelForm):
     class Meta:
         model = Subscriber
+
+class UnsubscriberForm(forms.Form):
+    email = forms.CharField('your email address')

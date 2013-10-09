@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Unsubscribe from alerts list{% endblock %}
+
+{% block content %}
+
+<h1>Unsubscribe from alerts</h1>
+
+<p>Sorry to see you go. If you change your mind, you can subscribe again at the <a href="{% url 'jobboard:subscribe' %}"> subscribe page.</a></p>
+
+<form method='POST' action='.'>
+{% csrf_token %}
+<table class="table">
+{{ form }}
+</table>
+<button class="btn">Unsubscribe me</button>
+</form>
+
+{% endblock %}
