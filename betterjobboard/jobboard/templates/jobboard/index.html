@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Better Job Board: All Recent Postings{% endblock %}
+
+{% block content %}
+
+<h1>Recent Job Posts</h1>
+
+{% if posts %}
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Company</th>
+    <th>Wage</th>
+    <th>Job Type</th>
+    <th>Publish Date</th>
+</tr>
+
+    {% for post in posts %}
+    <tr>
+        <td><a href="{% url 'jobboard:detail' post.id %}">{{ post.title }}</a></td>
+        <td>{{ post.profile.company_name }}</td>
+        <td>{{ post.wage }}</td>
+        <td>{{ post.job_type }}</td>
+        <td>{{ post.pub_date }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No recent jobs found. If you want to be notified when new job posts are available, <a href="{% url 'jobboard:subscribe' %}">subscribe for updates.</a>  If you are an employer and want to post a job, check out the <a href="{% url 'jobboard:new-post' %}">Post A Job page</a>.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Post a new job{% endblock %}
+
+{% block content %}
+
+<h1>Post a New Job</h1>
+
+<form method='POST' action='.'>
+{% csrf_token %}
+<table class="table">
+{{ form }}
+</table>
+<button class="btn">Post new job</button>
+</form>
+
+{% endblock %}

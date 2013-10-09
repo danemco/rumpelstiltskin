@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Job posts for {{ profile }}{% endblock %}
+
+{% block content %}
+
+<h1>Job Posts for {{ profile }}</h1>
+
+{% if posts %}
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Wage</th>
+    <th>Job Type</th>
+    <th>Publish Date</th>
+    <th>Expiration Date</th>
+    <th>Active?</th>
+</tr>
+
+    {% for post in posts %}
+    <tr>
+        <td><a href="{% url 'jobboard:detail' post.id %}">{{ post.title }}</a></td>
+        <td>{{ post.profile.company_name }}</td>
+        <td>{{ post.wage }}</td>
+        <td>{{ post.job_type }}</td>
+        <td>{{ post.pub_date }}</td>
+        <td>{{ post.expiration }}</td>
+        <td>{{ post.active }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No job posts created for this company profile yet. Why not <a href="{% url 'jobboard:new-post' %}">post a new job</a> now?</p>
+{% endif %}
+
+{% endblock %}
