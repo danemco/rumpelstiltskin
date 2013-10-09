@@ -11,6 +11,10 @@ from django.contrib import messages
 from jobboard.models import Profile, Post, Subscriber
 from jobboard.forms import JobPostForm, ProfileForm, SubscriberForm, UnsubscriberForm
 
+def notify_subscribers(instance_id):
+    # send out mass emails here
+    pass
+
 def index(request):
     now = timezone.now()
     posts = Post.objects.filter(active=True).filter(expiration__gte=now).order_by('-pub_date')[:20]
@@ -56,7 +60,8 @@ def new_post(request):
         job_form = JobPostForm(request.POST)
         if job_form.is_valid():
             job_form.instance.profile = profile
-            job_form.save()
+            job_instance = job_form.save()
+            notify_subscribers(job_instance)
             messages.success(request, "Your job post has been saved.")
             return HttpResponseRedirect(reverse('jobboard:profile-job-list'))
           
@@ -143,7 +148,7 @@ def edit_profile(request):
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
             # Check to see if we already have a profile for this guy.
-            profile = Profile.objects.get(user = request.user)
+            profile = Profile.objects.get_or_create(user = request.user)[0]
             if profile:
                 profile.company_name = profile_form.cleaned_data.get('company_name')
                 profile.company_website = profile_form.cleaned_data.get('company_website')
