@@ -1,6 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
@@ -93,3 +93,22 @@ def add_post(request, username):
         return render(request, 'microblog/add_post.html', {
             'form' : form
         })
+
+
+@login_required
+def follow(request, username):
+    profile = get_object_or_404(Profile, user__username=username)
+    user_profile = get_object_or_404(Profile, user=request.user)
+    user_profile.following.add(profile)
+    user_profile.save()
+    return HttpResponseRedirect(reverse('microblog:detail', args=(profile,)))
+
+@login_required
+def unfollow(request, username):
+    profile = get_object_or_404(Profile, user__username=username)
+    user_profile = get_object_or_404(Profile, user=request.user)
+    user_profile.following.remove(profile)
+    user_profile.save()
+    return HttpResponseRedirect(reverse('microblog:detail', args=(profile,)))
+
+

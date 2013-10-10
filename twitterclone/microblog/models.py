@@ -13,6 +13,8 @@ class Profile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+
+
 class Post(models.Model):
     profile = models.ForeignKey(Profile)
     message  = models.CharField(max_length=140)

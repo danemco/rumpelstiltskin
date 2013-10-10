@@ -11,6 +11,13 @@ from django.contrib import messages
 from jobboard.models import Profile, Post, Subscriber
 from jobboard.forms import JobPostForm, ProfileForm, SubscriberForm, UnsubscriberForm
 
+from registration.backends.simple.views import RegistrationView 
+
+class MyRegistrationBackend(RegistrationView):
+    def get_success_url(self, request, user):
+        return reverse('jobboard:index')
+        
+
 def notify_subscribers(instance_id):
     # send out mass emails here
     pass

@@ -21,9 +21,9 @@
 {% ifnotequal user.username profile.user.username %}
 
    {% if following %}
-      <p>You're already following this person</p>
+      <a href="{% url 'microblog:unfollow' profile %}" class="btn btn-danger">Unfollow @{{ profile.user.username}}</a>
    {% else %}
-      <p>Nope, you're not following this person. Want to?</p>
+      <a href="{% url 'microblog:follow' profile %}" class="btn btn-primary">Follow @{{ profile.user.username}}</a>
    {% endif %}
 
 {% endifnotequal %}
