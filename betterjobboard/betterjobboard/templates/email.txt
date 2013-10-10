@@ -1,0 +1,8 @@
+Dear {{ name }},
+
+There's a new job post titled {{ job }} on the job board website.
+Come check it out!
+
+Ciao,
+
+The Management.

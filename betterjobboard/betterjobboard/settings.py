@@ -138,6 +138,11 @@ INSTALLED_APPS = (
     'registration',
 )
 
+EMAIL_HOST = 'stumail.cs.dixie.edu'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_HOST_USER = ''
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

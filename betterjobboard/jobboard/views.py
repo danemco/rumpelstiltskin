@@ -7,6 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib import messages
+from django.template import RequestContext, loader
+from django.core.mail import send_mail
 
 from jobboard.models import Profile, Post, Subscriber
 from jobboard.forms import JobPostForm, ProfileForm, SubscriberForm, UnsubscriberForm
@@ -18,9 +20,20 @@ class MyRegistrationBackend(RegistrationView):
         return reverse('jobboard:index')
         
 
-def notify_subscribers(instance_id):
+def notify_subscribers(request, post):
     # send out mass emails here
-    pass
+
+    if post.active:
+        for subscriber in Subscriber.objects.all(): 
+            template = loader.get_template('jobboard/email.txt')
+            context = RequestContext(request, {
+                    'name': subscriber.name,
+                    'post': post,
+                })
+            body = template.render(context)
+
+            send_mail('New Job Posting: ' + post.title, body, 'no-reply@betterjobboard.com', [subscriber.email], fail_silently=False)
+    return True
 
 def index(request):
     now = timezone.now()
@@ -68,7 +81,7 @@ def new_post(request):
         if job_form.is_valid():
             job_form.instance.profile = profile
             job_instance = job_form.save()
-            notify_subscribers(job_instance)
+            notify_subscribers(request, job_instance)
             messages.success(request, "Your job post has been saved.")
             return HttpResponseRedirect(reverse('jobboard:profile-job-list'))
           
