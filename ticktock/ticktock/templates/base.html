@@ -2,7 +2,7 @@
 <html>
     <head>
 
-        <title>{% block title %}Better Job Board{% endblock %}</title>
+        <title>{% block title %}Tick Tock Time Clock{% endblock %}</title>
         <script src="http://code.jquery.com/jquery.js"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
@@ -15,21 +15,16 @@
     <body>
         <div class="container">
             <div class="navbar navbar-inverse">
-                <a class="navbar-brand" href="/">Better Job Board</a>
+                <a class="navbar-brand" href="/">Tick Tock</a>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="{% url 'jobboard:subscribe' %}">Subscribe</a></li>
-                    <li><a href="{% url 'jobboard:unsubscribe' %}">Unsubscribe</a></li>
                 </ul>
                 {% if user.is_authenticated %} <!-- I need help here. How to tell if the user is logged in? -->
-                    <a href="{% url 'jobboard:profile-job-list' %}" class="btn btn-default navbar-btn pull-right">My Jobs</a></button> | 
-                    <a href="{% url 'jobboard:new-post' %}" class="btn btn-default navbar-btn pull-right">New Job Post</a></button> | 
-                    <a href="{% url 'jobboard:edit-profile' %}" class="btn btn-default navbar-btn pull-right">Edit Profile</a></button> | 
-                    <a href="#" class="btn btn-default navbar-btn pull-right">Log Out</a></button>
+                    <a href="/accounts/logout/" class="btn btn-default navbar-btn pull-right">Log Out</a></button>
                     <a href="#" class="btn btn-default navbar-btn pull-right">{{ user.username }}</a></button>
                 {% else %}
                     <a href="#" class="btn btn-default navbar-btn pull-right">Sign Up</a></button> | 
-                    <a href="#" class="btn btn-default navbar-btn pull-right">Log In</a></button>
+                    <a href="/accounts/login/" class="btn btn-default navbar-btn pull-right">Log In</a></button>
                 {% endif %}
             </div>
             

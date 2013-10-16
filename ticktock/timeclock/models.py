@@ -13,7 +13,7 @@ class Record(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
     start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    end_time = models.DateTimeField(null=True, blank=True)
     message = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
