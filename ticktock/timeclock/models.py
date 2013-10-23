@@ -12,10 +12,10 @@ class Project(models.Model):
         return self.title
 
     def get_absolute_url(sefl):
-        return reverse('jobboard:project-detail', args=(self.pk,))
+        return reverse('timeclock:project-detail', args=(self.pk,))
 
 class Record(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, editable=False)
     project = models.ForeignKey(Project)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(null=True, blank=True)
@@ -33,5 +33,5 @@ class Record(models.Model):
     def __unicode__(self):
         return "Started " + self.start_time.strftime("%Y-%m-%d %I:%M:%S %p")
 
-    def get_absolute_url(sefl):
-        return reverse('jobboard:recordt-detail', args=(self.pk,))
+    def get_absolute_url(self):
+        return reverse('timeclock:record-detail', args=(self.pk,))
