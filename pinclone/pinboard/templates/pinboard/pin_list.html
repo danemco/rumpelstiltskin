@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Pinclone Main Page{% endblock %}
+
+{% block extrascripts %}
+<style type="text/css">
+.pin {
+    float: left;
+    width: 200px;
+}
+.pin-image {
+    width:190px;
+    text-align: center;
+}
+.user {
+    font-weight: bold;
+}
+.board-name {
+    color: #ccc;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Latest Pins</h1>
+{% if pins %}
+{% for pin in pins %}
+    {% include 'pinboard/_pin.html' %}
+{% endfor %}
+<div style="clear: both">
+{% else %}
+<p>No pins have been uploaded. Sorry.</p>
+{% endif %}
+{% endblock %}
