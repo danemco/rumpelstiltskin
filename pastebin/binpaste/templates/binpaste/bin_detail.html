@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ bin.title }}</h1>
+<p>This is: <strong>{{ bin.language }}</strong> published on {{ bin.pub_date }}</p>
+<pre>
+{{ bin.text }}
+</pre>
+{% endblock %}
